@@ -59,22 +59,25 @@ def watermark_segments_with_dynamic_position(output_dir, watermark_image, row_si
     """
     # Get the list of segment rows
     segment_rows = stampingInfoRow(output_dir, row_size)
-
+    
     # Loop through each row and segment
     for row_index, row in enumerate(segment_rows):
         for segment_index, segment in enumerate(row):
             input_segment = os.path.join(output_dir, segment)
-            output_segment = os.path.join(output_dir, f"watermarked_{segment}")
+            output_segment = os.path.join('stamped', f"watermarked_{segment}")
 
             # Generate a dynamic position for watermark
             position = generate_dynamic_positions()
-
+            
             # Apply the watermark to the segment
             apply_watermark_to_segment(input_segment, output_segment, watermark_image, position)
 
+
+
+
 # Example usage:
 output_dir = "output"              # Directory where the segments are stored
-watermark_image = "text.png"   # Path to the watermark image
+watermark_image = "red-24px-text.png"   # Path to the watermark image
 row_size = 5                        # Number of segments per row
 
 # Process and watermark the segments

@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 def transcode_to_hls(input_file, output_playlist, segment_duration=10):
@@ -25,8 +26,12 @@ def transcode_to_hls(input_file, output_playlist, segment_duration=10):
             output_playlist                  # Path to the output .m3u8 playlist
         ]
         
+        # make sure the output directory exists
+        os.makedirs(os.path.dirname(output_playlist), exist_ok=True)
+
         # Run the command
         subprocess.run(command, check=True)
+        print("-----------------------------------------------------")
         print(f"Transcoding completed. Playlist and segments saved to {output_playlist}")
 
     except subprocess.CalledProcessError as e:
@@ -35,6 +40,6 @@ def transcode_to_hls(input_file, output_playlist, segment_duration=10):
 # Example usage
 input_video = "SAMPLE-1080p.mp4"           # Path to the input video file
 output_m3u8 = "output/output.m3u8"  # Path to the output HLS playlist
-segment_duration = 10               # Segment duration in seconds
+segment_duration = 5                # Segment duration in seconds
 
 transcode_to_hls(input_video, output_m3u8, segment_duration)

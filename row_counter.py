@@ -16,4 +16,3 @@ def stampingInfoRow(
         print(f"Row {index}: {row}")
 
     return segment_rows
-

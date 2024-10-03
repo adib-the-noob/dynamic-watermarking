@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video.js HLS Player</title>
+
+  <!-- Video.js CSS -->
+  <link href="https://vjs.zencdn.net/7.21.0/video-js.css" rel="stylesheet" />
+
+  <!-- Styling for the player -->
+  <style>
+    .video-js {
+      width: 640px;
+      height: 360px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video.js player element -->
+  <video id="my_video" class="video-js vjs-default-skin" controls preload="auto">
+    <source src="stamped/playlist.m3u8" type="application/x-mpegURL">
+    <!-- Fallback for browsers that do not support HLS -->
+    Your browser does not support HLS video.
+  </video>
+
+  <!-- Video.js library -->
+  <script src="https://vjs.zencdn.net/7.21.0/video.js"></script>
+
+  <!-- Optional: If you want to ensure compatibility with older browsers -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.15.0/videojs-contrib-hls.js"></script>
+
+  <script>
+    // Initialize the Video.js player
+    var player = videojs('my_video');
+
+    // Optional: Add additional event listeners
+    player.ready(function() {
+      console.log('Player is ready');
+    });
+
+    player.on('error', function() {
+      console.error('An error occurred:', player.error());
+    });
+  </script>
+
+</body>
+</html>
